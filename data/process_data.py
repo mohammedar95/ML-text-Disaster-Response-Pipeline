@@ -5,6 +5,14 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
+    """ Function to load the original source data filepath
+    Args:
+    messages_filepath: raw data of text messages file path
+    categories_filepath: data source of categories path
+
+    Returns:
+    df = a merged dataframe from messages and categories
+    """
     # Load messages.csv into a dataframe
     # Load categories.csv into a dataframe
     messages = pd.read_csv(messages_filepath)
@@ -15,6 +23,13 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """ Function to clean and pre-process the text data and transform it
+    Args:
+    df: merged dataframe from
+
+    Returns:
+    df: post-processed with cleaned and dropped duplicated
+    """
 
     # Split the values in the categories column on the ; character so that each value becomes a separate column
     categories = df.categories.str.split(';', expand=True)
@@ -37,6 +52,8 @@ def clean_data(df):
     for column in categories:
         categories[column] = [int(x[-1:]) for x in categories[column]]
 
+
+    categories.related = categories.related.replace(2,1)
     # drop the original categories column from `df`
     df = df.drop("categories", axis=1)
 
