@@ -7,10 +7,13 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
-from sklearn.externals import joblib
+from plotly.graph_objs import Bar, Pie
+import joblib
 from sqlalchemy import create_engine
+import os
 
+file_path = os.path.abspath(os.getcwd())
+print(file_path)
 
 app = Flask(__name__)
 
@@ -26,11 +29,13 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+ 
+
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
+df = pd.read_sql_table('DisasterResponse', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+model = joblib.load("../models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -57,30 +62,10 @@ def index():
                     y=genre_counts
                 )
             ],
-
             'layout': {
                 'title': 'Distribution of Message Genres',
                 'yaxis': {
                     'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
-            }
-        },
-
-        {
-            'data': [
-                Pie(
-                    x=genre_names,
-                    y=genre_val
-                )
-            ],
-
-            'layout': {
-                'title': 'Total Messages by Genre',
-                'yaxis': {
-                    'title': "Total"
                 },
                 'xaxis': {
                     'title': "Genre"

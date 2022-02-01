@@ -1,6 +1,7 @@
 import sys
 # import libraries
 import nltk
+nltk.download('omw-1.4')
 nltk.download(['punkt', 'wordnet', 'stopwords', 'averaged_perceptron_tagger'])
 
 # import statements
@@ -43,8 +44,7 @@ def load_data(database_filepath):
     
     """
     engine = create_engine(f'sqlite:///{database_filepath}')
-    df = pd.read_sql_table(f'{database_filepath}', engine)
-    df = df[df.related != 2]
+    df = pd.read_sql_table('DisasterResponse', engine)
     X = df["message"]
     Y = df.iloc[:,4:]
     category_names = Y.columns

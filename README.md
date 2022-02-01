@@ -37,8 +37,8 @@ Provide a much of the flask web app for you, but feel free to add extra features
 
 In the project's root directory:
 * To run ETL pipeline that cleans data and stores in database:
-`python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+`python3 data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
 * To run ML pipeline that trains classifier and saves:
-`python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+`python3 models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 * To run the web app locally:
-`python app/run.py` then go to http://0.0.0.0:3001/ or localhost:3001
+`python3 app/run.py` then go to http://0.0.0.0:3001/ or localhost:3001
