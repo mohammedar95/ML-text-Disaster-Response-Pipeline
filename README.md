@@ -1,4 +1,4 @@
-# ML-text-Disaster-Response-Pipeline
+# ML Text Disaster Response Pipeline
 
 # Project Overview
 This project is to apply best practice of data engineering skills as a data scientist. In this project, I will apply Machine Learning and Natural Language Processing skills to analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
